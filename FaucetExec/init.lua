@@ -1,6 +1,6 @@
 
 print("Welcome to GEXecutor primarily made by Now (@saqqwd) and http2 (@http2), you can get your name on the official executor too by making contributions.")
-print("Git repo: https://gitea.com/Now/GEXecutor")
+print("Git repo: https://github.com/now420/GEXecutor")
 print(" ")
 
 local _fetch_stubmodule do
