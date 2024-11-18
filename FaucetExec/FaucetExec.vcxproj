@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{b196a5f5-76ac-4a61-a4d2-2c7f59148ba5}</ProjectGuid>
+    <RootNamespace>FaucetExec</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\danie\source\repos\FaucetExec\FaucetExec\dependencies</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);C:\Users\danie\Downloads\TridentV2\thedecentsource\libraries\SDK\Lib\x64</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="dependencies\imgui\backends\imgui_impl_dx11.cpp" />
+    <ClCompile Include="dependencies\imgui\backends\imgui_impl_win32.cpp" />
+    <ClCompile Include="dependencies\imgui\imgui.cpp" />
+    <ClCompile Include="dependencies\imgui\imgui_demo.cpp" />
+    <ClCompile Include="dependencies\imgui\imgui_draw.cpp" />
+    <ClCompile Include="dependencies\imgui\imgui_tables.cpp" />
+    <ClCompile Include="dependencies\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="dependencies\imgui\TextEditor\TextEditor.cpp" />
+    <ClCompile Include="dependencies\Luau\Ast.cpp" />
+    <ClCompile Include="dependencies\Luau\BuiltinFolding.cpp" />
+    <ClCompile Include="dependencies\Luau\Builtins.cpp" />
+    <ClCompile Include="dependencies\Luau\BytecodeBuilder.cpp" />
+    <ClCompile Include="dependencies\Luau\Compiler.cpp" />
+    <ClCompile Include="dependencies\Luau\Confusables.cpp" />
+    <ClCompile Include="dependencies\Luau\ConstantFolding.cpp" />
+    <ClCompile Include="dependencies\Luau\CostModel.cpp" />
+    <ClCompile Include="dependencies\Luau\lcode.cpp" />
+    <ClCompile Include="dependencies\Luau\Lexer.cpp" />
+    <ClCompile Include="dependencies\Luau\Location.cpp" />
+    <ClCompile Include="dependencies\Luau\Parser.cpp" />
+    <ClCompile Include="dependencies\Luau\StringUtils.cpp" />
+    <ClCompile Include="dependencies\Luau\TableShape.cpp" />
+    <ClCompile Include="dependencies\Luau\TimeTrace.cpp" />
+    <ClCompile Include="dependencies\Luau\Types.cpp" />
+    <ClCompile Include="dependencies\Luau\ValueTracking.cpp" />
+    <ClCompile Include="dependencies\zstd\common\debug.c" />
+    <ClCompile Include="dependencies\zstd\common\entropy_common.c" />
+    <ClCompile Include="dependencies\zstd\common\error_private.c" />
+    <ClCompile Include="dependencies\zstd\common\fse_decompress.c" />
+    <ClCompile Include="dependencies\zstd\common\pool.c" />
+    <ClCompile Include="dependencies\zstd\common\threading.c" />
+    <ClCompile Include="dependencies\zstd\common\xxhash.c" />
+    <ClCompile Include="dependencies\zstd\common\zstd_common.c" />
+    <ClCompile Include="dependencies\zstd\compress\fse_compress.c" />
+    <ClCompile Include="dependencies\zstd\compress\hist.c" />
+    <ClCompile Include="dependencies\zstd\compress\huf_compress.c" />
+    <ClCompile Include="dependencies\zstd\compress\zstdmt_compress.c" />
+    <ClCompile Include="dependencies\zstd\compress\zstd_compress.c" />
+    <ClCompile Include="dependencies\zstd\compress\zstd_compress_literals.c" />
+    <ClCompile Include="dependencies\zstd\compress\zstd_compress_sequences.c" />
+    <ClCompile Include="dependencies\zstd\compress\zstd_compress_superblock.c" />
+    <ClCompile Include="dependencies\zstd\compress\zstd_double_fast.c" />
+    <ClCompile Include="dependencies\zstd\compress\zstd_fast.c" />
+    <ClCompile Include="dependencies\zstd\compress\zstd_lazy.c" />
+    <ClCompile Include="dependencies\zstd\compress\zstd_ldm.c" />
+    <ClCompile Include="dependencies\zstd\compress\zstd_opt.c" />
+    <ClCompile Include="dependencies\zstd\compress\zstd_preSplit.c" />
+    <ClCompile Include="dependencies\zstd\decompress\huf_decompress.c" />
+    <ClCompile Include="dependencies\zstd\decompress\zstd_ddict.c" />
+    <ClCompile Include="dependencies\zstd\decompress\zstd_decompress.c" />
+    <ClCompile Include="dependencies\zstd\decompress\zstd_decompress_block.c" />
+    <ClCompile Include="dependencies\zstd\deprecated\zbuff_common.c" />
+    <ClCompile Include="dependencies\zstd\deprecated\zbuff_compress.c" />
+    <ClCompile Include="dependencies\zstd\deprecated\zbuff_decompress.c" />
+    <ClCompile Include="dependencies\zstd\dictBuilder\cover.c" />
+    <ClCompile Include="dependencies\zstd\dictBuilder\divsufsort.c" />
+    <ClCompile Include="dependencies\zstd\dictBuilder\fastcover.c" />
+    <ClCompile Include="dependencies\zstd\dictBuilder\zdict.c" />
+    <ClCompile Include="dependencies\zstd\legacy\zstd_v01.c" />
+    <ClCompile Include="dependencies\zstd\legacy\zstd_v02.c" />
+    <ClCompile Include="dependencies\zstd\legacy\zstd_v03.c" />
+    <ClCompile Include="dependencies\zstd\legacy\zstd_v04.c" />
+    <ClCompile Include="dependencies\zstd\legacy\zstd_v05.c" />
+    <ClCompile Include="dependencies\zstd\legacy\zstd_v06.c" />
+    <ClCompile Include="dependencies\zstd\legacy\zstd_v07.c" />
+    <ClCompile Include="entry.cpp" />
+    <ClCompile Include="src\overlay\overlay.cpp" />
+    <ClCompile Include="src\rbx\instance\instance.cpp" />
+    <ClCompile Include="src\rbx\logs\datamodel\datamodel.cpp" />
+    <ClCompile Include="src\utils\memory\memory.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dependencies\imgui\backends\imgui_impl_dx11.h" />
+    <ClInclude Include="dependencies\imgui\backends\imgui_impl_win32.h" />
+    <ClInclude Include="dependencies\imgui\imconfig.h" />
+    <ClInclude Include="dependencies\imgui\imgui.h" />
+    <ClInclude Include="dependencies\imgui\imgui_internal.h" />
+    <ClInclude Include="dependencies\imgui\imstb_rectpack.h" />
+    <ClInclude Include="dependencies\imgui\imstb_textedit.h" />
+    <ClInclude Include="dependencies\imgui\imstb_truetype.h" />
+    <ClInclude Include="dependencies\imgui\KeybindWidget.h" />
+    <ClInclude Include="dependencies\imgui\TextEditor\TextEditor.h" />
+    <ClInclude Include="dependencies\luacode.h" />
+    <ClInclude Include="dependencies\Luau\Ast.h" />
+    <ClInclude Include="dependencies\Luau\BuiltinFolding.h" />
+    <ClInclude Include="dependencies\Luau\Builtins.h" />
+    <ClInclude Include="dependencies\Luau\Bytecode.h" />
+    <ClInclude Include="dependencies\Luau\BytecodeBuilder.h" />
+    <ClInclude Include="dependencies\Luau\BytecodeUtils.h" />
+    <ClInclude Include="dependencies\Luau\Common.h" />
+    <ClInclude Include="dependencies\Luau\Compiler.h" />
+    <ClInclude Include="dependencies\Luau\Confusables.h" />
+    <ClInclude Include="dependencies\Luau\ConstantFolding.h" />
+    <ClInclude Include="dependencies\Luau\CostModel.h" />
+    <ClInclude Include="dependencies\Luau\DenseHash.h" />
+    <ClInclude Include="dependencies\Luau\ExperimentalFlags.h" />
+    <ClInclude Include="dependencies\Luau\Lexer.h" />
+    <ClInclude Include="dependencies\Luau\Location.h" />
+    <ClInclude Include="dependencies\Luau\ParseOptions.h" />
+    <ClInclude Include="dependencies\Luau\Parser.h" />
+    <ClInclude Include="dependencies\Luau\ParseResult.h" />
+    <ClInclude Include="dependencies\Luau\StringUtils.h" />
+    <ClInclude Include="dependencies\Luau\TableShape.h" />
+    <ClInclude Include="dependencies\Luau\TimeTrace.h" />
+    <ClInclude Include="dependencies\Luau\Types.h" />
+    <ClInclude Include="dependencies\Luau\ValueTracking.h" />
+    <ClInclude Include="dependencies\Luau\Variant.h" />
+    <ClInclude Include="dependencies\Luau\VecDeque.h" />
+    <ClInclude Include="dependencies\json\httplib.h" />
+    <ClInclude Include="dependencies\json\nlohmann\json.hpp" />
+    <ClInclude Include="dependencies\json\nlohmann\json_fwd.hpp" />
+    <ClInclude Include="dependencies\json\server.h" />
+    <ClInclude Include="dependencies\streamio\streamio.hpp" />
+    <ClInclude Include="dependencies\xxhash.h" />
+    <ClInclude Include="dependencies\zstd\common\allocations.h" />
+    <ClInclude Include="dependencies\zstd\common\bits.h" />
+    <ClInclude Include="dependencies\zstd\common\bitstream.h" />
+    <ClInclude Include="dependencies\zstd\common\compiler.h" />
+    <ClInclude Include="dependencies\zstd\common\cpu.h" />
+    <ClInclude Include="dependencies\zstd\common\debug.h" />
+    <ClInclude Include="dependencies\zstd\common\error_private.h" />
+    <ClInclude Include="dependencies\zstd\common\fse.h" />
+    <ClInclude Include="dependencies\zstd\common\huf.h" />
+    <ClInclude Include="dependencies\zstd\common\mem.h" />
+    <ClInclude Include="dependencies\zstd\common\pool.h" />
+    <ClInclude Include="dependencies\zstd\common\portability_macros.h" />
+    <ClInclude Include="dependencies\zstd\common\threading.h" />
+    <ClInclude Include="dependencies\zstd\common\xxhash.h" />
+    <ClInclude Include="dependencies\zstd\common\zstd_deps.h" />
+    <ClInclude Include="dependencies\zstd\common\zstd_internal.h" />
+    <ClInclude Include="dependencies\zstd\common\zstd_trace.h" />
+    <ClInclude Include="dependencies\zstd\compress\clevels.h" />
+    <ClInclude Include="dependencies\zstd\compress\hist.h" />
+    <ClInclude Include="dependencies\zstd\compress\zstdmt_compress.h" />
+    <ClInclude Include="dependencies\zstd\compress\zstd_compress_internal.h" />
+    <ClInclude Include="dependencies\zstd\compress\zstd_compress_literals.h" />
+    <ClInclude Include="dependencies\zstd\compress\zstd_compress_sequences.h" />
+    <ClInclude Include="dependencies\zstd\compress\zstd_compress_superblock.h" />
+    <ClInclude Include="dependencies\zstd\compress\zstd_cwksp.h" />
+    <ClInclude Include="dependencies\zstd\compress\zstd_double_fast.h" />
+    <ClInclude Include="dependencies\zstd\compress\zstd_fast.h" />
+    <ClInclude Include="dependencies\zstd\compress\zstd_lazy.h" />
+    <ClInclude Include="dependencies\zstd\compress\zstd_ldm.h" />
+    <ClInclude Include="dependencies\zstd\compress\zstd_ldm_geartab.h" />
+    <ClInclude Include="dependencies\zstd\compress\zstd_opt.h" />
+    <ClInclude Include="dependencies\zstd\compress\zstd_preSplit.h" />
+    <ClInclude Include="dependencies\zstd\decompress\zstd_ddict.h" />
+    <ClInclude Include="dependencies\zstd\decompress\zstd_decompress_block.h" />
+    <ClInclude Include="dependencies\zstd\decompress\zstd_decompress_internal.h" />
+    <ClInclude Include="dependencies\zstd\deprecated\zbuff.h" />
+    <ClInclude Include="dependencies\zstd\dictBuilder\cover.h" />
+    <ClInclude Include="dependencies\zstd\dictBuilder\divsufsort.h" />
+    <ClInclude Include="dependencies\zstd\legacy\zstd_legacy.h" />
+    <ClInclude Include="dependencies\zstd\legacy\zstd_v01.h" />
+    <ClInclude Include="dependencies\zstd\legacy\zstd_v02.h" />
+    <ClInclude Include="dependencies\zstd\legacy\zstd_v03.h" />
+    <ClInclude Include="dependencies\zstd\legacy\zstd_v04.h" />
+    <ClInclude Include="dependencies\zstd\legacy\zstd_v05.h" />
+    <ClInclude Include="dependencies\zstd\legacy\zstd_v06.h" />
+    <ClInclude Include="dependencies\zstd\legacy\zstd_v07.h" />
+    <ClInclude Include="dependencies\zstd\zdict.h" />
+    <ClInclude Include="dependencies\zstd\zstd.h" />
+    <ClInclude Include="dependencies\zstd\zstd_errors.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="src\overlay\overlay.hpp" />
+    <ClInclude Include="src\rbx\instance\instance.hpp" />
+    <ClInclude Include="src\rbx\logs\datamodel\datamodel.hpp" />
+    <ClInclude Include="src\rbx\offsets\offsets.hpp" />
+    <ClInclude Include="src\rbx\storage\storage.hpp" />
+    <ClInclude Include="src\utils\memory\memory.hpp" />
+    <ClInclude Include="src\utils\memory\WinAPI.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="init.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
