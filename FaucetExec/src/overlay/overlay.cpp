@@ -204,7 +204,7 @@ void gui::overlay::render()
 		move_window(hw);
 
 		if (check == true) {
-			if ((GetAsyncKeyState(VK_END) & 1))
+			if ((GetAsyncKeyState(VK_F10) & 1))
 				draw = !draw;
 			check = !check;
 		}
