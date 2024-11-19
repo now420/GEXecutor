@@ -1,181 +1,195 @@
+-- THIS INCLUDES SCRAPPED CUSTOM FUNCTIONS FROM RIO :)
 
-print("Welcome to GEXecutor primarily made by Now (@saqqwd) and http2 (@http2), you can get your name on the official executor too by making contributions.")
-print("Git repo: https://github.com/now420/GEXecutor")
-print(" ")
+print("GRP's contribution to Faucet's Init Script")
+local _VERSION = "1.0.0"
+local _IDENTITY = "8" -- Set to whatever you want it to be :)
 
-local _fetch_stubmodule do
-	local current_module = 1
-	local modules_list = {}
-	local in_use_modules = {}
-	
-	for _, obj in game:FindService("CoreGui").RobloxGui.Modules:GetDescendants() do
-		if not obj:IsA("ModuleScript") then
-			if obj.Name:match("AvatarExperience") then
-				for _, o in obj:GetDescendants() do
-					if o.Name == "Flags" then
-						for _, oa in o:GetDescendants() do
-							if not oa:IsA("ModuleScript") then continue end
-							table.insert(modules_list, oa:Clone())
-						end
-					elseif o.Name == "Test" then
-						for _, oa in o:GetDescendants() do
-							if not oa:IsA("ModuleScript") then continue end
-							table.insert(modules_list, oa:Clone())
-						end
-					end
-				end
-			else
-				if 
-				obj.Name:match("ReportAnything") 
-				or obj.Name:match("TestHelpers")
-				--or obj.Name:match("Flags")
-				then
-					for _, o in obj:GetDescendants() do
-						if not o:IsA("ModuleScript") then continue end
-						table.insert(modules_list, o:Clone())
-					end
-				end
-			end
-				
-			continue 
-		end
-	end
-	
-	local function find_new_module()
-		local idx = math.random(1, #modules_list)
-		while idx == current_module or in_use_modules[idx] do
-			idx = math.random(1, #modules_list)
-		end
-		return idx
-	end
-	
-	function _fetch_stubmodule()
-		local idx = find_new_module()
-	
-		in_use_modules[current_module] = nil
-		current_module = idx
-		in_use_modules[current_module] = true
-	
-		return modules_list[idx]
-	end
-end
-	
-local fetch_stubmodule = _fetch_stubmodule
-
-
-if script.Name == "JestGlobals" then
-    local indicator = Instance.new("BoolValue")
-    indicator.Name = "Exec"
-    indicator.Parent = script
-
-    local holder = Instance.new("ObjectValue")
-    holder.Parent = script
-    holder.Name = "Holder"
-    holder.Value = fetch_stubmodule():Clone()
-    print(holder.Value)
-
-    local lsindicator = Instance.new("BoolValue")
-    lsindicator.Name = "Loadstring"
-    lsindicator.Parent = script
-
-    local lsholder = Instance.new("ObjectValue")
-    lsholder.Parent = script
-    lsholder.Name = "LoadstringHolder"
-    lsholder.Value = fetch_stubmodule():Clone()
-    print(lsholder.Value)
+function identifyexecutor()
+print("Faucet" .. _VERSION)
 end
 
---[[
-if not game.CoreGui:FindFirstChild("Hi") then
-    local rape = script:Clone()
-    rape.Parent = game.CoreGui
-    rape.Name = "Hi"
+local _getgenv = clonefunction(getgenv)
+local _getrenv = clonefunction(getrenv)
+local _getreg = clonefunction(getreg)
+local renv = _getrenv( )
+local genv = _getgenv( )
+local reg = _getreg( )
+local _newcc = clonefunction(newcclosure)
 
-    wait(1)
+local _type = clonefunction(renv.type)
+local _assert = clonefunction(renv.assert)
 
-    require(rape)
-end
+local unused = _newcc(function( ) end)
 
+function executeurl(string)
+    local scriptContent, errorMessage = pcall(function()
+        return HttpService:GetAsync(string)
+    end)
 
-if not script.Name == "JestGlobals" then
-    while true do
-        wait(1)
+    if scriptContent then
+
+        local func, loadError = loadstring(scriptContent)
+
+        if func then
+            func()
+        else
+            error("Failed to load script: " .. loadError)
+        end
+    else
+        print("Failed to fetch script: " .. errorMessage)
     end
 end
-]]
 
-local RunService = game:GetService("RunService")
-if script.Name == "JestGlobals" then
-    local exec = script.Exec
-    local holder = script.Holder
+function getGameName()
+ return game.Name
+ wait(2)
+ print(game.Name)
+end
 
-local cooldownTime = 0.05
-local lastExecutionTime = 0
 
-task.spawn(function(...)
-    RunService.RenderStepped:Connect(function()
-        local currentTime = tick()  -- Get the current time in seconds
-        if exec.Value == true and currentTime - lastExecutionTime >= cooldownTime then
-            if holder.Value == nil and not notificationSent then
-                notificationSent = true -- Set the flag to prevent multiple notifications
-                game:GetService("StarterGui"):SetCore("SendNotification", {
-                    Title = "gex",
-                    Text = "Something went wrong while executing, try running the script again.",
-                    Icon = ""
-                })
-                holder.Value = fetch_stubmodule():Clone()
-            end
+function getGameID()
+ return Place.ID
+ wait(2)
+ print(game.Name .. "'s ID is: " .. Place.ID)
+end
 
-            local s, func = pcall(require, holder.Value)
+genv.newlclosure = _newcc(function(cl) 
+	assert(_type(cl) == "function", "invalid argument #1 to 'newlclosure' (function expected) ")
 
-            -- Reset holder for the next execution
-            holder.Value = fetch_stubmodule():Clone()
-
-            if s and type(func) == "function" then
-                func()
-            end
-
-            exec.Value = false -- Reset exec value to false after execution
-            notificationSent = false -- Reset the notification flag
-
-            -- Update the last execution time to the current time
-            lastExecutionTime = currentTime
-        end
-    end)
+	return function(...)
+		return cl(...)
+	end
 end)
+
+function getscripts()
+    local scripts = {} 
+
+    for _, object in pairs(game:GetDescendants()) do
+        if object:IsA("LocalScript") or object:IsA("ModuleScript") then
+            table.insert(scripts, object)
+        end
+    end
+
+    return scripts
+ wait(2)
+print(scripts)
 end
 
-wait() -- so recursive requires doesnt happen
+getgenv().dumpstring = function(p1)
+    return "\\" .. p1:gsub(".", function(c)
+        return "\\" .. string.byte(c)
+    end)
+end
 
--- This is support for many inject types, i highly suggest NOT using policyservice. << IMPORTANT
+getgenv().getscriptclosure = function(targetScript)
+    for _, regEntry in pairs(getreg()) do
+        if type(regEntry) == "table" then
+            for _, funcEntry in pairs(regEntry) do
+                if type(funcEntry) == "function" and getfenv(funcEntry) and rawget(getfenv(funcEntry), "script") == targetScript then
+                    return funcEntry
+                end
+            end
+        end
+    end
+end
 
-if script.Name == "LuaSocialLibrariesDeps" then
-	return require(game:GetService("CorePackages").Packages.LuaSocialLibrariesDeps)
+function hookmetamethod(object,metamethod,func)
+    local meta = getrawmetatable(object)
+    local copy = meta
+    copy[metamethod] = func
+    dotherealhook(object,copy)
+    return
 end
-if script.Name == "JestGlobals" then
-	return require(script)
+
+genv.http = {
+request = request
+}
+
+setreadonly(crypt, false)
+genv.base64 = {
+    encode = base64encode,
+    decode = base64decode
+}
+
+crypt.base64 = base64
+crypt.base64encode = base64encode
+crypt.base64decode = base64decode
+crypt.base64_encode = base64encode
+crypt.base64_decode = base64decode
+base64_encode = base64encode
+base64_decode = base64decode
+
+
+setreadonly(crypt, true)
+
+genv.console = {
+    consoleprint = rconsoleprint,
+    consoleinput = rconsoleinput,
+    consoledestroy = rconsoledestroy,
+    consolecreate = rconsolecreate,
+    consoleclear = rconsoleclear,
+    consolesettitle = rconsolesettitle
+}
+
+consoleprint = rconsoleprint
+consoleinput = rconsoleinput
+consoledestroy = rconsoledestroy
+consolecreate = rconsolecreate
+consoleclear = rconsoleclear
+consolesettitle = rconsolesettitle
+
+do
+	local aliasData = {
+        [getclipboard] = { "fromclipboard" },
+        [setclipboard] = { "setrbxclipboard", "toclipboard" },
+        [hookfunction] = { "hookfunc", "replaceclosure", "replacefunction", "replacefunc", "detourfunction", "replacecclosure", "detour_function" },
+        [isfunctionhooked] = { "ishooked" },
+        [restorefunction] = { "restorefunc", "restoreclosure" },
+        [clonefunction] = { "clonefunc" },
+        [getinstances] = { "get_instances" },
+        [getscripts] = { "get_scripts" },
+        [getmodules] = { "get_modules" },
+        [getloadedmodules] = { "get_loaded_modules" },
+        [getnilinstances] = { "get_nil_instances" },
+        [getcallingscript] = { "get_calling_script", "getscriptcaller", "getcaller" },
+        [getallthreads] = { "get_all_threads" },
+        [getgc] = { "get_gc_objects" },
+        [gettenv] = { "getstateenv" },
+        [getnamecallmethod] = { "get_namecall_method" },
+        [setnamecallmethod] = { "set_namecall_method" },
+        [debug.getupvalue] = { "getupvalue" },
+        [debug.getupvalues] = { "getupvalues" },
+        [debug.setupvalue] = { "setupvalue" },
+        [debug.getconstant] = { "getconstant" },
+        [debug.getconstants] = { "getconstants" },
+        [debug.setconstant] = { "setconstant" },
+        [debug.getproto] = { "getproto" },
+        [debug.getprotos] = { "getprotos" },
+        [debug.getstack] = { "getstack" },
+        [debug.setstack] = { "setstack" },
+        [debug.getinfo] = { "getinfo" },
+        [debug.isvalidlevel] = { "validlevel", "isvalidlevel" },
+        [islclosure] = { "is_l_closure" },
+        [iscclosure] = { "is_c_closure" },
+        [isourclosure] = { "isexecutorclosure", "is_our_closure", "is_executor_closure", "is_krnl_closure", "is_fluxus_closure", "isfluxusclosure", "is_fluxus_function", "isfluxusfunction", "is_protosmasher_closure","checkclosure", "issynapsefunction", "is_synapse_function" },
+        [queueonteleport] = { "queue_on_teleport" },
+        [clearteleportqueue] = { "clear_teleport_queue" },
+        [request] = { "http_request" },
+        [getsenv] = { "getmenv" },
+        [getfpscap] = { "get_fps_cap" },
+        [identifyexecutor] = { "getexecutorname" },
+        [isrbxactive] = { "isgameactive", "iswindowactive" },
+        [delfile] = { "deletefile" },
+        [delfolder] = { "deletefolder" },
+        [getidentity] = { "getthreadidentity", "getcontext", "getthreadcontext", "get_thread_context", "get_thread_identity" },
+        [setidentity] = { "setthreadidentity", "setcontext", "setthreadcontext", "set_thread_context", "set_thread_identity" },
+        [makewriteable] = { "makewritable" }
+        [executeurl] = { "loadstring", "execurl" , "loadurl" , "webimport" , "urlexecute" }
+    };
+
+	for i, v in aliasData do
+		for i2 = 1, #v do
+			genv[v[i2]] = i;
+		end
+	end
 end
-if script.Name == "Url" then
-	local a={}
-	local b=game:GetService("ContentProvider")
-	local function c(d)
-		local e,f=d:find("%.")
-		local g=d:sub(f+1)
-		if g:sub(-1)~="/"then
-			g=g.."/"
-		end;
-		return g
-	end;
-	local d=b.BaseUrl
-	local g=c(d)
-	local h=string.format("https://games.%s",g)
-	local i=string.format("https://apis.rcs.%s",g)
-	local j=string.format("https://apis.%s",g)
-	local k=string.format("https://accountsettings.%s",g)
-	local l=string.format("https://gameinternationalization.%s",g)
-	local m=string.format("https://locale.%s",g)
-	local n=string.format("https://users.%s",g)
-	local o={GAME_URL=h,RCS_URL=i,APIS_URL=j,ACCOUNT_SETTINGS_URL=k,GAME_INTERNATIONALIZATION_URL=l,LOCALE_URL=m,ROLES_URL=n}setmetatable(a,{__newindex=function(p,q,r)end,__index=function(p,r)return o[r]end})
-	return a
-end
-while wait(9e9) do wait(9e9);end
