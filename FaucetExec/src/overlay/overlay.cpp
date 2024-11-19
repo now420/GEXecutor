@@ -183,7 +183,7 @@ void gui::overlay::render()
 
 	editor.SetLanguageDefinition(TextEditor::LanguageDefinition::Lua());
 
-	editor.SetText(R"(print('gex on top! (Made by now and http2'))");
+	editor.SetText(R"(print('GEX on top! (Made by now and http2)'))"); // swapped from whover fucking retard put "editor.SetText(R"(print('gex on top! (Made by now and http2'))");" a tiny mistake I picked up on hehe
 
 	while (!done)
 	{
