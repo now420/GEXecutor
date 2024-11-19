@@ -228,7 +228,7 @@ int main()
     std::thread(gui::overlay::render).detach();
 
     for (int i = 0; i++; i < 100) {
-        std::cout << "hit END on ur keyboard to toggle ui" << std::endl;
+        std::cout << "hit END or F10 on ur keyboard to toggle ui" << std::endl;
     }
 
     while (true) {}
