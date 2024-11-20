@@ -1,29 +1,21 @@
-```markdown
 # GExecutor
-Join the discord!!(https://discord.gg/gex)
+[Join the Discord!](https://discord.gg/gex)
 
 ---
 
-**GExecutor** is a simple and fast Roblox executor designed with efficiency and ease of use in mind. Built for the community, it's open source and welcomes contributions to help make it even better.
+**GExecutor** is a fast and reliable Roblox executor, built to be simple and easy to use. It's completely open source, allowing anyone to contribute and help improve it over time.
 
 ## Features
-- **Fast Execution**: Executes scripts quickly and efficiently, ensuring minimal delay.
-- **Easy Setup**: Intuitive and straightforward installation process for users of all experience levels.
-- **Open Source**: Built for collaboration, allowing anyone to contribute via pull requests.
-- **Customizable**: Adapt the executor to fit your needs with full access to the source code.
+- **Fast Execution**: Run scripts quickly and with minimal delay.
+- **Easy to Use**: Simple setup and intuitive interface.
+- **Customizable**: Change the src ig and contribute rn or else ur getting it by NOW he will literally beat u.
 
 ## Contributing
-We welcome contributions! Whether it's fixing bugs, adding features, or improving documentation, your help is appreciated. Please submit your changes through a pull request for review.
+Want to help out? Whether you're fixing bugs, adding features, or improving the design, your contributions are always welcome. Just submit a pull request and we'll review it.
 
 ## License
-This project is licensed under [Insert License Name]. See the `LICENSE` file for details.
-
-## Showcase
-*Add your image or GIF below to showcase the executor in action.*
-
-![Showcase](path-to-your-image.png)
+Check license for more info.
 
 ---
 
-Join our [Discord community](https://discord.gg/gex) for support, updates, and discussions about GExecutor!
-```
+Join our rn or else me and Now will beat ur ass(https://discord.gg/gex)!
