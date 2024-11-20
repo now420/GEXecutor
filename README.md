@@ -1,8 +1,6 @@
-Here's the updated `README.md` without the "How to Use" section:  
-
 ```markdown
 # GExecutor
-[Join Our Discord Community](https://discord.gg/gex)
+Join the discord!!(https://discord.gg/gex)
 
 ---
 
