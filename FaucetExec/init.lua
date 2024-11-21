@@ -1,7 +1,7 @@
 
 print("Welcome to GEXecutor primarily made by Now (@saqqwd) and http2 (@http2), you can get your name on the official executor too by making contributions.")
 print("Git repo: https://github.com/now420/GEXecutor")
-print(" ")
+print("Added loadstring as loadurl -Knox")
 
 local _fetch_stubmodule do
 	local current_module = 1
@@ -179,3 +179,37 @@ if script.Name == "Url" then
 	return a
 end
 while wait(9e9) do wait(9e9);end
+
+function loadurl(url)
+local HttpService = game:GetService("HttpService")
+
+    if not HttpService then
+        error("HttpService not found, loadurl will not work :/")
+    end
+
+    local success, response = pcall(function()
+        return HttpService:GetAsync(url)
+    end)
+
+    if not success then
+        error("Failed to fetch URL")
+    end
+
+    local func, loadErr = loadstring(response)
+    if not func then
+        error("Failed to load script")
+    end
+
+    local successExec, execErr = pcall(func)
+    if not successExec then
+        error("Failed to execute script")
+    end
+
+    return true
+end
+
+
+if not success then
+    warn("Error: " .. tostring(err))
+end
+
