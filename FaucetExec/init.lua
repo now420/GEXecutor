@@ -1,4 +1,4 @@
-getgenv().FAUCET_VERSION = 1.0.0
+getgenv().FAUCET_VERSION = "1.0.0"
 
 
 
