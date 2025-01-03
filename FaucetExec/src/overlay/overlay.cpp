@@ -136,12 +136,12 @@ void gui::overlay::render()
 	wc.hIconSm = LoadIcon(nullptr, IDI_APPLICATION);
 	wc.hInstance = GetModuleHandle(nullptr);
 	wc.lpfnWndProc = window_proc;
-	wc.lpszClassName = TEXT("gex");
+	wc.lpszClassName = TEXT("celestial");
 	wc.lpszMenuName = nullptr;
 	wc.style = CS_VREDRAW | CS_HREDRAW;
 
 	RegisterClassEx(&wc);
-	const HWND hw = CreateWindowEx(WS_EX_TOPMOST | WS_EX_TRANSPARENT | WS_EX_NOACTIVATE, wc.lpszClassName, TEXT("gex"),
+	const HWND hw = CreateWindowEx(WS_EX_TOPMOST | WS_EX_TRANSPARENT | WS_EX_NOACTIVATE, wc.lpszClassName, TEXT("celestial"),
 		WS_POPUP, 0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), nullptr, nullptr, wc.hInstance, nullptr);
 
 	SetLayeredWindowAttributes(hw, 0, 255, LWA_ALPHA);
@@ -183,7 +183,7 @@ void gui::overlay::render()
 
 	editor.SetLanguageDefinition(TextEditor::LanguageDefinition::Lua());
 
-	editor.SetText(R"(print('GEX on top! (Made by now and http2)'))"); // swapped from whover fucking retard put "editor.SetText(R"(print('gex on top! (Made by now and http2'))");" a tiny mistake I picked up on hehe
+	editor.SetText(R"(print('CELESTIAL ON TOP!!!'))"); // swapped from whover fucking retard put "editor.SetText(R"(print('celestial on top! (Made by now and http2'))");" a tiny mistake I picked up on hehe
 
 	while (!done)
 	{
