@@ -230,7 +230,7 @@ void gui::overlay::render()
 
 					ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoCollapse;
 
-					ImGui::Begin("Celestial Internal", nullptr, window_flags);
+					ImGui::Begin("celestial dsc.gg/celestialcz", nullptr, window_flags);
 
 					HandleDragging(ImGui::GetCurrentWindow());
 					static char texte[1024 * 1024] = "";
