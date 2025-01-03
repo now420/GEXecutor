@@ -1,7 +1,10 @@
+getgenv().FAUCET_VERSION = 1.0.0
 
-print("Welcome to GEXecutor primarily made by Now (@saqqwd) and http2 (@http2), you can get your name on the official executor too by making contributions.")
+
+
+print("Thank you for using GEXcutor primarily made by Now (@saqqwd) and http2 (@http2), you can get your name on the official executor too by making contributions.")
+print("The executor is on version " + str(FAUCET_VERSION))
 print("Git repo: https://github.com/now420/GEXecutor")
-print(" ")
 
 local _fetch_stubmodule do
 	local current_module = 1
