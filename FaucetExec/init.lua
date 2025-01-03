@@ -244,8 +244,55 @@ getgenv().SendMessageEMBED = function(url, embed)
 end
 getgenv().SendMessageEMBED = SendMessageEmbed
 
-getgenv().IS_CELESTIAL_LOADED = true
+getgenv().getdevice = function()
+    return tostring(game:GetService("UserInputService"):GetPlatform()):split(".")[3]
+end 
 
+getgenv().getping = function(suffix: boolean)
+    local rawping = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
+    local pingstr = rawping:sub(1, #rawping - 7)
+    local pingnum = tonumber(pingstr)
+    local ping = tostring(math.round(pingnum))
+    return not suffix and ping or ping .. " ms"
+end 
+
+getgenv().getfps = function(): number
+    local FPS: number
+    local TimeFunction = RunService:IsRunning() and time or os.clock
+    local LastIteration: number, Start: number
+    local FrameUpdateTable = {}
+    local function HeartbeatUpdate()
+        LastIteration = TimeFunction()
+        for Index = #FrameUpdateTable, 1, -1 do
+            FrameUpdateTable[Index + 1] = FrameUpdateTable[Index] >= LastIteration - 1 and FrameUpdateTable[Index] or nil
+        end
+        FrameUpdateTable[1] = LastIteration
+        FPS = TimeFunction() - Start >= 1 and #FrameUpdateTable or #FrameUpdateTable / (TimeFunction() - Start)
+    end
+    Start = TimeFunction()
+    RunService.Heartbeat:Connect(HeartbeatUpdate)
+    task.wait(1.1)
+    return FPS
+end
+
+getgenv().getplayer = function(name: string)
+    return not name and getgenv().getplayers()["LocalPlayer"] or getgenv().getplayers()[name]
+end
+
+getgenv().getplayers = function()
+    local players = {}
+    for _, x in pairs(game:GetService("Players"):GetPlayers()) do
+        players[x.Name] = x
+    end
+    players["LocalPlayer"] = game:GetService("Players").LocalPlayer
+    return players
+end
+
+getgenv().getlocalplayer = function(): Player
+    return getgenv().getplayer()
+end
+
+getgenv().IS_CELESTIAL_LOADED = true
 
 if getgenv().IS_CELESTIAL_LOADED then
     print("Celestial is loaded!")
