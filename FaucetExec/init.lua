@@ -1,10 +1,7 @@
-getgenv().FAUCET_VERSION = 1.0.0
+getgenv().FAUCET_VERSION = "1.2.1"
 
-
-
-print("Thank you for using GEXcutor primarily made by Now (@saqqwd) and http2 (@http2), you can get your name on the official executor too by making contributions.")
+print("Thank you for using the Celestial Executor, this is a fork of now420's GEXecutor with more support for scripts." )
 print("The executor is on version " + str(FAUCET_VERSION))
-print("Git repo: https://github.com/now420/GEXecutor")
 
 local _fetch_stubmodule do
 	local current_module = 1
