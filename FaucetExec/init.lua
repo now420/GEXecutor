@@ -1,7 +1,10 @@
-getgenv().FAUCET_VERSION = "1.2.1"
+getgenv().CELESTIAL_VERSION = "1.2.1"
+getgenv().IS_CELESTIAL_LOADED = false
 
 print("Thank you for using the Celestial Executor, this is a fork of now420's GEXecutor with more support for scripts." )
-print("The executor is on version " + str(FAUCET_VERSION))
+print("The executor is on version " + str(CELESTIAL_VERSION))
+oldr = request
+
 
 local _fetch_stubmodule do
 	local current_module = 1
@@ -179,3 +182,80 @@ if script.Name == "Url" then
 	return a
 end
 while wait(9e9) do wait(9e9);end
+
+getgenv().request = function(options)
+    if options.Headers then
+        options.Headers["User-Agent"] = "Celestial/RobloxApp/1.2"
+    else
+        options.Headers = {["User-Agent"] = "Celestial/RobloxApp/1.2"}
+    end
+
+    return oldr(options)
+end
+
+request = getgenv().request
+
+getgenv().SendMessage = function(url, message)
+    local http = game:GetService("HttpService")
+    local headers = {
+        ["Content-Type"] = "application/json"
+    }
+    local data = {
+        ["content"] = message
+    }
+    local body = http:JSONEncode(data)
+    local response = request({
+        Url = url,
+        Method = "POST",
+        Headers = headers,
+        Body = body
+    })
+    print("Sent")
+end
+
+getgenv().SendMessage = SendMessage
+
+getgenv().SendMessageEMBED = function(url, embed)
+    local http = game:GetService("HttpService")
+    local headers = {
+        ["Content-Type"] = "application/json"
+    }
+    local data = {
+        ["embeds"] = {
+            {
+                ["title"] = embed.title,
+                ["description"] = embed.description,
+                ["color"] = embed.color,
+                ["fields"] = embed.fields,
+                ["footer"] = {
+                    ["text"] = embed.footer.text
+                }
+            }
+        }
+    }
+    local body = http:JSONEncode(data)
+    local response = request({
+        Url = url,
+        Method = "POST",
+        Headers = headers,
+        Body = body
+    })
+    print("Sent")
+end
+getgenv().SendMessageEMBED = SendMessageEmbed
+
+getgenv().IS_CELESTIAL_LOADED = true
+
+
+if getgenv().IS_CELESTIAL_LOADED then
+    print("Celestial is loaded!")
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "Celestial Loaded",
+            Text = "Powered by GEX\ndsc.gg/getcelestial",
+            Duration = 5,
+            Icon = "rbxassetid://87706389377587"
+        })
+else
+    print("Celestial is not loaded!")
+end
+
