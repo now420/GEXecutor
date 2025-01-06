@@ -43,7 +43,7 @@ namespace rbx {
             };
 
             namespace instancevalue {
-                constexpr std::uint64_t value = 0xC0;
+                constexpr std::uint64_t value = 0xC8;
             };
         };
 
