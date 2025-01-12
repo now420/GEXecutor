@@ -124,35 +124,28 @@ std::string GetLuaScript() {
 
 int main()
 {
+    std::cout << "\033[32m[GEX INJECTOR]\033[0m Finding Roblox!" << std::endl;
     std::string luaContent = GetLuaScript();
 
     DWORD pid = GetProcessIdByName(L"RobloxPlayerBeta.exe");
 
     if (pid == 0) {
-        std::cerr << "open roblox player faggot ass nigga" << std::endl;
+        std::cerr << "\033[32m[GEX INJECTOR]\033[0mOpen Roblox Player!" << std::endl;
         system("pause");
         return 1;
     }
-
-    std::cout << pid << std::endl;
-
+    std::cout << "\033[32m[GEX INJECTOR]\033[0m Roblox Found!" << std::endl;
+    std::cout << "\033[32m[GEX INJECTOR]\033[0m Injecting!" << std::endl;
     memory->attach(pid);
     auto window = getWindowHandleFromProcessId(pid);
 
     auto renderview = booty::GetRenderView();
-    std::chex(renderview);
 
     auto dmptr = memory->read<uintptr_t>(renderview + 0x118);
-    std::chex(dmptr);
 
     auto dmaddy = memory->read<uintptr_t>(dmptr + 0x1a8);
-    std::chex(dmaddy);
 
     storage::datamodel = static_cast<rbx::instance_t>(dmaddy);
-
-    std::chex(storage::datamodel.address);
-    std::cout << storage::datamodel.getname() << std::endl;
-    std::cout << storage::datamodel.findfirstchild("Workspace").getname() << std::endl;
 
     rbx::instance_t corePackages = storage::datamodel.findfirstchild("CorePackages");
     rbx::instance_t CoreGui = storage::datamodel.findfirstchild("CoreGui");
@@ -160,27 +153,19 @@ int main()
     rbx::instance_t Modules = RobloxGui.findfirstchild("Modules");
 
     // things for jg
-    rbx::instance_t corepkgs = storage::datamodel.findfirstchild("CorePackages");
-    std::cout << corepkgs.getname() << std::endl;
+    rbx::instance_t corepkgs = storage::datamodel.findfirstchild("CorePackages");;
 
     rbx::instance_t ws = corepkgs.findfirstchild("Workspace");
-    std::cout << ws.getname() << std::endl;
 
     rbx::instance_t pkgs = ws.findfirstchild("Packages");
-    std::cout << pkgs.getname() << std::endl;
 
     rbx::instance_t _ws = pkgs.findfirstchild("_Workspace");
-    std::cout << _ws.getname() << std::endl;
 
     rbx::instance_t smsp = _ws.findfirstchild("SMSProtocol");
-    std::cout << smsp.getname() << std::endl;
 
     rbx::instance_t dev = smsp.findfirstchild("Dev");
-    std::cout << dev.getname() << std::endl;
 
     rbx::instance_t jestglobals = dev.findfirstchild("JestGlobals");
-    std::cout << jestglobals.getname() << std::endl;
-    std::cout << std::hex << jestglobals.address << std::endl;
 
     rbx::instance_t player_list = Modules.findfirstchild("PlayerList");
     rbx::instance_t player_list_manager = player_list.findfirstchild("PlayerListManager");
@@ -199,11 +184,9 @@ int main()
 
     // hijack
     memory->write<uintptr_t>(player_list_manager.address + 0x8, jestglobals.address);
-
+    
     size_t target_bytecode_size;
     auto raper = compress_jest(compile(luaContent), target_bytecode_size);
-
-    
 
     // sets the bytecode
 
@@ -222,14 +205,16 @@ int main()
     memory->write<uintptr_t>(player_list_manager.address + 0x8, player_list_manager.address);
 
     //Url.SetBytecode(rapist, sizeof(raper.size()));
-
+    std::cout << "\033[32m[GEX INJECTOR]\033[0m Successfully injected!" << std::endl;
     storage::jestglobals = jestglobals;
+    std::cout << "\033[31m[IMPORTANT]\033[0m Do not close this console!" << std::endl;
 
     std::thread(gui::overlay::render).detach();
-
+    
+    std::cout << "\033[34m[INFO]\033[0m Hit END or F10 on your keyboard to toggle the UI!" << std::endl;
     for (int i = 0; i++; i < 100) {
-        std::cout << "hit END or F10 on ur keyboard to toggle ui" << std::endl;
     }
 
     while (true) {}
 }
+//better looking injector by diet cock fr 
