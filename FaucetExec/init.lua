@@ -1,5 +1,5 @@
-getgenv().CELESTIAL_VERSION = "1.2.1"
-getgenv().IS_CELESTIAL_LOADED = false
+FAUCET_VERSION = "1.0.0"
+
 
 print("Thank you for using the Celestial Executor, this is a fork of now420's GEXecutor with more support for scripts." )
 print("The executor is on version " + str(CELESTIAL_VERSION))

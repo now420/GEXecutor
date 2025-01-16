@@ -26,7 +26,7 @@ namespace rbx {
         namespace instance {
             constexpr std::uint64_t childsize = 0x8;
             constexpr std::uint64_t children = 0x70;
-            constexpr std::uint64_t parent = 0x40;
+            constexpr std::uint64_t parent = 0x50;
             constexpr std::uint64_t name = 0x68;
             constexpr std::uint64_t cname = 0x8;
             constexpr std::uint64_t cdescriptor = 0x18;
@@ -48,7 +48,7 @@ namespace rbx {
         };
 
         namespace player {
-            constexpr std::uint64_t localplayer = 0x1189;
+            constexpr std::uint64_t localplayer = 0x118;
             constexpr std::uint64_t character = 0x2a0;
             constexpr std::uint64_t userid = 0x1E8;
             constexpr std::uint64_t displayname = 0x100;
