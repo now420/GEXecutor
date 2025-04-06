@@ -14,13 +14,13 @@ namespace rbx {
             constexpr std::uint64_t dm1 = 0x118;
             constexpr std::uint64_t dm2 = 0x1a8;
             constexpr std::uint64_t placeid = 0x170;
-            constexpr std::uint64_t gameloaded = 0x3B1;
+            constexpr std::uint64_t gameloaded = 0x3e1;
         };
 
         namespace visualengine {
             constexpr std::uint64_t engine = 0x10;
-            constexpr std::uint64_t viewmatrix = 0x4C0;
-            constexpr std::uint64_t dimensions = 0x730;
+            constexpr std::uint64_t viewmatrix = 0x4d0;
+            constexpr std::uint64_t dimensions = 0x740;
         };
 
         namespace instance {
@@ -35,37 +35,37 @@ namespace rbx {
             namespace basepart {
                 constexpr std::uint64_t position = 0x140;
                 constexpr std::uint64_t cframe = 0x11C;
-                constexpr std::uint64_t size = 0x2AC;
-                constexpr std::uint64_t velocity = 0x14C;
+                constexpr std::uint64_t size = 0x2b0;
+                constexpr std::uint64_t velocity = 0x14c;
                 constexpr std::uint64_t rotvelocity = 0x158;
-                constexpr std::uint64_t anchored = 0x309;
-                constexpr std::uint64_t cancollide = 0x30b;
+                constexpr std::uint64_t anchored = 0x311;
+                constexpr std::uint64_t cancollide = 0x313;
             };
 
             namespace instancevalue {
-                constexpr std::uint64_t value = 0xC8;
+                constexpr std::uint64_t value = 0xd0;
             };
         };
 
         namespace player {
             constexpr std::uint64_t localplayer = 0x118;
             constexpr std::uint64_t character = 0x2a0;
-            constexpr std::uint64_t userid = 0x1E8;
-            constexpr std::uint64_t displayname = 0x100;
-            constexpr std::uint64_t team = 0x1d8;
+            constexpr std::uint64_t userid = 0x210;
+            constexpr std::uint64_t displayname = 0x110;
+            constexpr std::uint64_t team = 0x200;
             constexpr std::uint64_t teamcolor = 0x274;
-            constexpr std::uint64_t cameramaxzoom = 0x238;
-            constexpr std::uint64_t cameraminzoom = 0x23C;
+            constexpr std::uint64_t cameramaxzoom = 0x268;
+            constexpr std::uint64_t cameraminzoom = 0x26c;
 
             namespace characterinstance {
                 namespace humanoid {
                     constexpr std::uint64_t rigtype = 0x1B8;
-                    constexpr std::uint64_t health = 0x18c;
-                    constexpr std::uint64_t maxhealth = 0x1ac;
-                    constexpr std::uint64_t walkspeed = 0x1C0;
-                    constexpr std::uint64_t walkspeedcheck = 0x398;
-                    constexpr std::uint64_t jumppower = 0x1A4;
-                    constexpr std::uint64_t hipheight = 0x194;
+                    constexpr std::uint64_t health = 0x194;
+                    constexpr std::uint64_t maxhealth = 0x1b4;
+                    constexpr std::uint64_t walkspeed = 0x1d0;
+                    constexpr std::uint64_t walkspeedcheck = 0x3a8;
+                    constexpr std::uint64_t jumppower = 0x1b0;
+                    constexpr std::uint64_t hipheight = 0x1a0;
                 };
             };
         };
