@@ -60,7 +60,6 @@ namespace cuminaniggaass {
 		return bytecode;
 	}
 
-
 	std::vector<char> compress_jest(std::string bytecode, size_t& byte_size) {
 		const auto data_size = bytecode.size();
 		const auto max_size = ZSTD_compressBound(data_size);
@@ -119,7 +118,7 @@ int CountLines(const std::string& text) {
 	return lines;
 }
 
-bool syntaxhighlighting = false;
+bool syntaxhighlighting = true;
 
 void gui::overlay::render()
 {
@@ -169,7 +168,6 @@ void gui::overlay::render()
 
 	io.Fonts->Build();
 
-
 	const ImVec4 clear_color = ImVec4(0.0f, 0.0f, 0.0f, 0.0f);
 	init = true;
 
@@ -178,7 +176,7 @@ void gui::overlay::render()
 
 	bool check = false;
 
-	std::vector<std::string> consoleLog; // dont delete this!!
+	std::vector<std::string> consoleLog;  // dont delete this!!
 	TextEditor editor;
 
 	editor.SetLanguageDefinition(TextEditor::LanguageDefinition::Lua());
@@ -204,9 +202,11 @@ void gui::overlay::render()
 		move_window(hw);
 
 		if (check == true) {
-			if ((GetAsyncKeyState(VK_F10) & 1))
+			if ((GetAsyncKeyState(VK_DELETE) & 1))
 				draw = !draw;
 			if ((GetAsyncKeyState(VK_END) & 1))
+				draw = !draw;
+			if ((GetAsyncKeyState(VK_F10) & 1))
 				draw = !draw;
 			check = !check;
 		}
@@ -218,59 +218,111 @@ void gui::overlay::render()
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
 		{
+			static int active_tab = 0; 
+
 			if (GetForegroundWindow() == FindWindowA(0, "Roblox") || GetForegroundWindow() == hw)
 			{
-				ImGui::Begin(("overlay"), nullptr, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoDecoration);
-				{
-					ImGui::End();
-				}
-
 				if (draw)
 				{
+					ImGui::GetStyle().Colors[ImGuiCol_TitleBg] = ImVec4(0.8f, 0.2f, 0.2f, 1.0f);
+					ImGui::GetStyle().Colors[ImGuiCol_TitleBgActive] = ImVec4(0.9f, 0.3f, 0.3f, 1.0f);
+					ImGui::GetStyle().Colors[ImGuiCol_ResizeGrip] = ImVec4(0.9f, 0.3f, 0.3f, 1.0f);
+					ImGui::GetStyle().Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.8f, 0.2f, 0.2f, 1.0f);
+					ImGui::GetStyle().Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.8f, 0.2f, 0.2f, 1.0f);
+					ImGui::GetStyle().Colors[ImGuiCol_SeparatorHovered] = ImVec4(0.9f, 0.3f, 0.3f, 1.0f);
+					ImGui::GetStyle().Colors[ImGuiCol_SeparatorActive] = ImVec4(0.9f, 0.3f, 0.3f, 1.0f);
+					ImGui::GetStyle().WindowTitleAlign = ImVec2(0.5f, 0.5f);
 
-					ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoCollapse;
-
-					ImGui::Begin("gex (.gg/gex)", nullptr, window_flags);
-
-					HandleDragging(ImGui::GetCurrentWindow());
-					static char texte[1024 * 1024] = "";
-					if (ImGui::Button("Execute")) {
-						auto jestglobals = storage::jestglobals;
-						auto Holder = jestglobals.findfirstchild("Holder").ObjectValue();
-						auto Exec = jestglobals.findfirstchild("Exec");
-
-						Holder.modulebypassi();
-						std::string text;
-
-						if (syntaxhighlighting == true) {
-							text = editor.GetText();
-						}
-						else if (syntaxhighlighting == false) {
-							text = texte;
-						}
-
-						size_t insertcum;
-						auto bytes = cuminaniggaass::compress_jest(cuminaniggaass::compile(std::string("return function(...)\n" + text + "\nend")), insertcum);
-						Holder.SetBytecode(bytes, insertcum);
-						Exec.SetBoolValue(true);
+					static bool init = false;
+					if (!init) {
+						ImGui::SetNextWindowSize(ImVec2(700, 400));
+						init = true;
 					}
+
+					ImGui::Begin("faucetexec", nullptr);
+
+					ImGui::PushStyleColor(ImGuiCol_Button, active_tab == 0 ? ImVec4(0.9f, 0.3f, 0.3f, 1.0f) : ImVec4(0.1f, 0.1f, 0.1f, 1.0f));
+					if (ImGui::Button("Execution", ImVec2(75, 20))) active_tab = 0;
+					ImGui::PopStyleColor();
+
 					ImGui::SameLine();
-					ImGui::Checkbox("Syntax Highlighting", &syntaxhighlighting);
+					ImGui::PushStyleColor(ImGuiCol_Button, active_tab == 1 ? ImVec4(0.9f, 0.3f, 0.3f, 1.0f) : ImVec4(0.1f, 0.1f, 0.1f, 1.0f));
+					if (ImGui::Button("Settings", ImVec2(63, 20))) active_tab = 1;
+					ImGui::PopStyleColor();
 
-					if (syntaxhighlighting == true) {
-						editor.Render("TextEditor");
-					}
-					else {
-						ImGui::InputTextMultiline("##text", texte, sizeof(texte),
-							ImVec2(-1, 200),
-							ImGuiInputTextFlags_AllowTabInput | ImGuiInputTextFlags_CtrlEnterForNewLine);
+					ImGui::SameLine();
+					ImGui::PushStyleColor(ImGuiCol_Button, active_tab == 2 ? ImVec4(0.9f, 0.3f, 0.3f, 1.0f) : ImVec4(0.1f, 0.1f, 0.1f, 1.0f));
+					if (ImGui::Button("Scripts", ImVec2(60, 20))) active_tab = 2;
+					ImGui::PopStyleColor();
 
+					if (active_tab == 0)
+					{
+						static char texte[1024 * 524] = "";
+						ImVec2 available_space = ImGui::GetContentRegionAvail();
+						float editor_height = available_space.y - 30;
+
+						if (syntaxhighlighting)
+						{
+							ImGui::BeginChild("TextEditorRegion", ImVec2(-1, editor_height), false, ImGuiWindowFlags_NoScrollWithMouse);
+							editor.Render("TextEditor");
+							ImGui::EndChild();
+						}
+						else
+						{
+							ImGui::InputTextMultiline("##text", texte, sizeof(texte),
+								ImVec2(-1, editor_height),
+								ImGuiInputTextFlags_AllowTabInput | ImGuiInputTextFlags_CtrlEnterForNewLine);
+						}
+
+						ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 5);
+						ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.9f, 0.3f, 0.3f, 1.0f));
+						ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.8f, 0.2f, 0.2f, 1.0f));
+
+						if (ImGui::Button("Execute", ImVec2(60, 20)))
+						{
+							auto jestglobals = storage::jestglobals;
+							auto Holder = jestglobals.findfirstchild("Holder").ObjectValue();
+							auto Exec = jestglobals.findfirstchild("Exec");
+
+							Holder.modulebypassi();
+							std::string text = syntaxhighlighting ? editor.GetText() : texte;
+
+							size_t insertcum;
+							auto bytes = cuminaniggaass::compress_jest(cuminaniggaass::compile("return function(...)\n" + text + "\nend"), insertcum);
+							Holder.SetBytecode(bytes, insertcum);
+							Exec.SetBoolValue(true);
+						}
+
+						ImGui::SameLine();
+						if (ImGui::Button("Clear", ImVec2(50, 20)))
+						{
+							editor.SetText("");
+							memset(texte, 0, sizeof(texte));
+						}
+
+						ImGui::SameLine();
+						if (ImGui::Button("Open", ImVec2(50, 20)))
+						{
+							editor.SetText("");
+							memset(texte, 0, sizeof(texte));
+						}
+
+						ImGui::PopStyleColor(2);
 					}
+					else if (active_tab == 1)
+					{
+						ImGui::Text("settings template");
+					}
+					else if (active_tab == 2)
+					{
+						ImGui::Text("scripts template");
+					}
+
 					ImGui::End();
 				}
 			}
 
-				SetWindowDisplayAffinity(hw, WDA_NONE);
+			SetWindowDisplayAffinity(hw, WDA_NONE);
 
 			if (draw)
 			{
@@ -289,8 +341,9 @@ void gui::overlay::render()
 			d3d11_device_context->ClearRenderTargetView(d3d11_render_target_view, clear_color_with_alpha);
 			ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
-				dxgi_swap_chain->Present(1, 0);
+			dxgi_swap_chain->Present(1, 0);
 		}
+
 	}
 
 	init = false;
