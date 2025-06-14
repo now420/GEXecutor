@@ -230,7 +230,7 @@ void gui::overlay::render()
 
 					ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoCollapse;
 
-					ImGui::Begin("gex (.gg/gex)", nullptr, window_flags);
+					ImGui::Begin("gex (.gg/vNejpZuanQ)", nullptr, window_flags);
 
 					HandleDragging(ImGui::GetCurrentWindow());
 					static char texte[1024 * 1024] = "";
